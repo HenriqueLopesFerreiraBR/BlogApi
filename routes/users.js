@@ -31,29 +31,31 @@ router.put("/:id", async(req,res) =>{
 //-----------------------------DELETAR------------------------------//
  
 router.delete("/:id", async(req,res) =>{
-    if (req.body.userId === req.params.id) {
+    
         try {
             const user = await User.findById(req.params.id);
-            try{
-                await Post.deleteMany({username:user.username}); 
-                await User.findByIdAndDelete(req.params.id)
-                res.status(200).json("Usuario foi deletado...")
-            }catch(error){
-                res.status(500).json(error)
+            if (req.body.userId === req.params.id) {
+                try{
+                    await Post.deleteMany({username:user.username}); 
+                    await User.findByIdAndDelete(req.params.id)
+                    res.status(200).json("Usuario foi deletado...")
+                }catch(error){
+                    res.status(500).json(error)
+                }
+                
+            }else{
+                res.status(401).json("Não foi possivel realizar o update da sua conta");
             }
         } catch (error) {
             res.status(404).json("Usuario não encontrador")
         }
 
 
-    }else{
-        res.status(401).json("Não foi possivel realizar o update da sua conta");
-    }
 });
 
 //-----------------------------------GET USER----------------------//
 
-router.get("/:id", async(req,req)=>{
+router.get("/:id", async(req,res)=>{
     try {
         const user = await User.findById(req.params.id);
         const {password, ...others} = user._doc;
