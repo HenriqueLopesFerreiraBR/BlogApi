@@ -44,7 +44,7 @@ router.delete("/:id", async(req,res) =>{
                 }
                 
             }else{
-                res.status(401).json("Não foi possivel realizar o update da sua conta");
+                res.status(401).json("Não foi possivel deletar a conta");
             }
         } catch (error) {
             res.status(404).json("Usuario não encontrador")

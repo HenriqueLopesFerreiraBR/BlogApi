@@ -1,8 +1,11 @@
 const mongoose = require('mongoose');
+const dotenv = require('dotenv')
+
+dotenv.config
 
 
 const connectDatabase = async ()=> {
-    await mongoose.connect(`mongodb+srv://henrique:342124@xblog.dt2b7.mongodb.net/xblog?retryWrites=true&w=majority`,(error) =>{
+    await mongoose.connect(process.env.MONGO_URL,(error) =>{
         if (error) {
             console.log('Não foi possivel se conectar ao bando de dados por causa do erro' , error);
         } else {

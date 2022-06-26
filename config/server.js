@@ -16,7 +16,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
 app.use("/api/posts", postRouter);
 
-const port = 3000;
+const port = process.env.PORT;
 app.listen(port, ()=>{
     console.log('App rodando na porta: ' + port)
 })

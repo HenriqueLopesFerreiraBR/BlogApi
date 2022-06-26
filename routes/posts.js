@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt")
 
 
 
-//_____________________________CREATE_____________________________//
+//_____________________________CREATE_________________________________//
 router.post("/", async(req,res) =>{
     
     const newPost = new Post(req.body);
@@ -44,7 +44,6 @@ router.put("/:id", async(req,res) =>{
         }catch(error){
             res.status(500).json(error)
         }
-
 })
 
 
@@ -65,18 +64,15 @@ router.delete("/:id", async(req,res) =>{
             }
         } catch (error) {
             res.status(404).json(error)
-        }
-
-
-    
+        }   
 });
 
 //-----------------------------------GET POST----------------------//
 
-// router.get("/:id", async(req,req)=>{
+//  router.get("/:id", async(req,req)=>{
 //     try {
-//         const user = await User.findById(req.params.id);
-//         const {password, ...others} = user._doc;
+//         const post = await Post.findById(req.params.id);
+//         const {password, ...others} = post._doc;
 //         res.status(200).json(others)
 //     } catch (error) {
 //         res.status(500).json(error)
