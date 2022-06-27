@@ -1,7 +1,5 @@
 const router = require('express').Router();
-const User = require('../models/User');
 const Post = require('../models/Post');
-const bcrypt = require("bcrypt")
 
 
 
@@ -69,16 +67,26 @@ router.delete("/:id", async(req,res) =>{
 
 //-----------------------------------GET POST----------------------//
 
-//  router.get("/:id", async(req,req)=>{
-//     try {
-//         const post = await Post.findById(req.params.id);
-//         const {password, ...others} = post._doc;
-//         res.status(200).json(others)
-//     } catch (error) {
-//         res.status(500).json(error)
-//     }
-// })
+ router.get("/:id", async(req,res)=>{
+    try {
+        const post = await Post.findById(req.params.id);
+        res.status(200).json(post)
+    } catch (error) {
+        res.status(500).json(error)
+    }
+});
+
+//________________________________GET ALL POST_______________________//
 
 
+router.get("/", async (req,res)=>{    
+    try {
+        const posts = await Post.find();
+        res.status(200).json(posts)
+    } catch (error) {
+        res.status(500).json(error)
+    }
+
+})
 
 module.exports = router 

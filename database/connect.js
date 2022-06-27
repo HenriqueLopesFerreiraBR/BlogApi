@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
-const dotenv = require('dotenv')
+const dotenv = require('dotenv');
+const multer = require("multer");
 
-dotenv.config
+dotenv.config()
 
 
 const connectDatabase = async ()=> {
