@@ -24,7 +24,9 @@ const storage = multer.diskStorage({
 })
 
 const upload = multer({storage:storage});
-app.post("/ape/upload", upload.single("arquivo"), (req,res)=>{
+
+
+app.post("/api/upload", upload.single("arquivo"), (req,res)=>{
     res.status(200).json("Arquivo foi updado")    
 });
 

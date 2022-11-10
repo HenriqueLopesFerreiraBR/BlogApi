@@ -18,8 +18,6 @@ router.post("/", async(req,res)=>{
 router.put("/:id", async(req,res)=>{
     try {
         const category = await Category.findById(req.params.id);
-        // console.log(category.id);
-        // console.log(req.params.id);
         if (category.id === req.params.id) {
             try {
                 const updateCategory = await Category.findByIdAndUpdate(
@@ -43,9 +41,20 @@ router.put("/:id", async(req,res)=>{
 
 })
 //_______________________DELETE_____________________//
-
+router.delete("/:id",async(req,res)=>{
+    
+})
 
 //_______________________GET________________________//
+router.get("/:id", async (req,res)=>{
+    try {
+        const category = await Category.findById(req.params.id);
+
+        res.status(201).json(category);
+    } catch (error) {
+        res.status(500).json(error)
+    }
+})
 
 //_______________________GET ALL_____________________//
 

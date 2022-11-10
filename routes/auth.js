@@ -29,7 +29,7 @@ router.post("/register", async(req,res) =>{
 //-----------------------------LOGIN------------------------------//
 router.post("/login",async(req,res)=>{
     try {
-        const user = User.findOne({username: req.body.username})
+        const user = await User.findOne({username: req.body.username})
         !user && res.status(400).json("Usuario errado");
 
         const validate = await bcrypt.compare(req.body.password, user.password)
@@ -40,6 +40,7 @@ router.post("/login",async(req,res)=>{
 
     } catch (error) {
         res.status(500).json(error)
+        return console.log(error)
     }
 })
 
